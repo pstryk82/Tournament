@@ -35,8 +35,10 @@ Pstryk82\LeagueBundle\Domain\ReadModel\Projection\CompetitionProjection:
         participants:
             targetEntity: Pstryk82\LeagueBundle\Domain\ReadModel\Projection\AbstractParticipantProjection
             mappedBy: competition
+            fetch: EAGER
         games:
             targetEntity: Pstryk82\LeagueBundle\Domain\ReadModel\Projection\GameProjection
             mappedBy: competition
+            fetch: EAGER
 
     lifecycleCallbacks: {  }

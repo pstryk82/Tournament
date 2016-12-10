@@ -27,8 +27,9 @@ abstract class AbstractEventListener
      */
     public function when(AbstractEvent $event)
     {
-        $method = explode('\\', get_class($event));
-        $method = 'on' . end($method);
+        $method = 'on' . (new \ReflectionClass($event))->getShortName();
+//        $method = explode('\\', get_class($event));
+//        $method = 'on' . end($method);
         if (method_exists($this, $method)) {
             $this->$method($event);
         }

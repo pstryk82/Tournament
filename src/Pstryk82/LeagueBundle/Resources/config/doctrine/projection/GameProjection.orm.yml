@@ -29,16 +29,19 @@ Pstryk82\LeagueBundle\Domain\ReadModel\Projection\GameProjection:
         competition:
             targetEntity: Pstryk82\LeagueBundle\Domain\ReadModel\Projection\CompetitionProjection
             inversedBy: games
+            fetch: EAGER
         homeParticipant:
             targetEntity: Pstryk82\LeagueBundle\Domain\ReadModel\Projection\AbstractParticipantProjection
             inversedBy: games
             joinColumn:
                 onDelete: set null
+            fetch: EAGER
         awayParticipant:
             targetEntity: Pstryk82\LeagueBundle\Domain\ReadModel\Projection\AbstractParticipantProjection
             inversedBy: games
             joinColumn:
                 onDelete: set null
+            fetch: EAGER
             
     lifecycleCallbacks: {  }
 

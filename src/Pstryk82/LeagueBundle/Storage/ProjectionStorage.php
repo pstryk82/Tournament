@@ -41,10 +41,6 @@ class ProjectionStorage
     {
         $repo = $this->entityManager->getRepository($projectionClass);
 
-        return $repo->findOneBy(
-            [
-                'id' => $aggregateId,
-            ]
-        );
+        return $repo->find($aggregateId);
     }
 }

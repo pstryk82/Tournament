@@ -49,8 +49,9 @@ trait EventSourced
     {
         $instance = new static($aggregateHistory->getAggregateId());
         foreach ($aggregateHistory->getEvents() as $event) {
-            $applyMethod = explode('\\', get_class($event));
-            $applyMethod = 'apply'.end($applyMethod);
+            $applyMethod = 'apply' . (new \ReflectionClass($event))->getShortName();
+//            $applyMethod = explode('\\', get_class($event));
+//            $applyMethod = 'apply'.end($applyMethod);
             $instance->$applyMethod($event);
         }
 

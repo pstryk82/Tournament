@@ -26,4 +26,5 @@ Pstryk82\LeagueBundle\Domain\ReadModel\Projection\TeamProjection:
         participants:
             targetEntity: Pstryk82\LeagueBundle\Domain\ReadModel\Projection\AbstractParticipantProjection
             mappedBy: team
+            fetch: EAGER
     lifecycleCallbacks: {  }
