@@ -43,16 +43,15 @@ class LeagueParticipant extends AbstractParticipant
      */
     private $gamesPlayed = 0;
 
-    public static function create(Team $team, $competitionId)
-        // @todo consider passing Team and Competition objects here instead
+    public static function create(Team $team, League $league)
     {
         $participant = new self($aggregateId = IdGenerator::generate());
         $participant
             ->setTeam($team)
-            ->setCompetitionId($competitionId);
+            ->setCompetition($league);
 
         $participantWasCreatedEvent = new LeagueParticipantWasCreated(
-            $aggregateId, $team, $competitionId, new \DateTime()
+            $aggregateId, $team, $league, new \DateTime()
         );
 
         $participant->recordThat($participantWasCreatedEvent);
@@ -64,7 +63,7 @@ class LeagueParticipant extends AbstractParticipant
     {
         $this
             ->setTeam($event->getTeam())
-            ->setCompetitionId($event->getLeagueId());
+            ->setCompetition($event->getLeague());
     }
 
     /**

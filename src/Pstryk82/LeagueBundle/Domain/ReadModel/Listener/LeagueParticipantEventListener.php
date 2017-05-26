@@ -24,7 +24,7 @@ class LeagueParticipantEventListener extends AbstractEventListener
         $team = $this->projectionStorage->find($event->getTeam()->getAggregateId(), TeamProjection::class);
         $leagueParticipant->setTeam($team);
 
-        $competition = $this->projectionStorage->find($event->getLeagueId(), LeagueProjection::class);
+        $competition = $this->projectionStorage->find($event->getLeague()->getAggregateId(), LeagueProjection::class);
         $leagueParticipant->setCompetition($competition);
 
         $this->projectionStorage->save($leagueParticipant);

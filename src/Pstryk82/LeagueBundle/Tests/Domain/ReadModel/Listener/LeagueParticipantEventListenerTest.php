@@ -42,8 +42,10 @@ class LeagueParticipantEventListenerTest extends AbstractEventListnerTest
         $this->assertProjectionFound($teamProjection, TeamProjection::class, 0);
         $team = $this->getMockBuilder(Team::class)->disableOriginalConstructor()->getMock();
         $team->method('getAggregateId')->willReturn('teamId');
+        $league = $this->getMockBuilder(League::class)->disableOriginalConstructor()->getMock();
+        $league->method('getAggregateId')->willReturn('leagueId');
         $event = new LeagueParticipantWasCreated(
-            'participant', $team, 'leagueId', $this->now
+            'participant', $team, $league, $this->now
         );
 
         $competitionProjection = new LeagueProjection('leagueId');

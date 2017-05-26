@@ -54,10 +54,10 @@ class GameFunctionalTest extends \PHPUnit_Framework_TestCase
                 'league', '2016', 7, 3, -1, 3, 1, 0, 4
         );
         $this->homeTeam = Team::create('Chelsea', 1234, 'Stamford Bridge');
-        $this->homeParticipant = LeagueParticipant::create($this->homeTeam, 'league');
+        $this->homeParticipant = LeagueParticipant::create($this->homeTeam, $this->competition);
 
         $this->awayTeam = Team::create('Legia', 1234, 'Stadion Wojska Polskiego');
-        $this->awayParticipant = LeagueParticipant::create($this->awayTeam, 'league');
+        $this->awayParticipant = LeagueParticipant::create($this->awayTeam, $this->competition);
         $this->game = Game::create(
                 $this->homeParticipant, $this->awayParticipant, $this->competition, $this->now
         );

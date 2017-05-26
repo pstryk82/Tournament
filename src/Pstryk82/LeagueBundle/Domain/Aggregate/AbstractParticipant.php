@@ -15,9 +15,9 @@ abstract class AbstractParticipant implements AggregateInterface
     protected $team;
 
     /**
-     * @var string
+     * @var Competition
      */
-    protected $competitionId;
+    protected $competition;
 
     /**
      * @var array
@@ -54,14 +54,15 @@ abstract class AbstractParticipant implements AggregateInterface
         return $this;
     }
 
-    public function getCompetitionId()
+    public function getCompetition()
     {
-        return $this->competitionId;
+        return $this->competition;
     }
 
-    public function setCompetitionId($competitionId)
+    public function setCompetition(Competition $competition)
     {
-        $this->competitionId = $competitionId;
+        $this->competition = $competition;
+
         return $this;
     }
 

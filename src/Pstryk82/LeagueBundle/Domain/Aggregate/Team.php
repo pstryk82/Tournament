@@ -81,7 +81,7 @@ class Team implements AggregateInterface
      */
     public function registerInLeague($league)
     {
-        $participant = LeagueParticipant::create($this, $league->getAggregateId());
+        $participant = LeagueParticipant::create($this, $league);
 
         return $participant;
     }

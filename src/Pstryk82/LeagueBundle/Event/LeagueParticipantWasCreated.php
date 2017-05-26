@@ -2,6 +2,7 @@
 
 namespace Pstryk82\LeagueBundle\Event;
 
+use Pstryk82\LeagueBundle\Domain\Aggregate\League;
 use Pstryk82\LeagueBundle\Domain\Aggregate\Team;
 
 class LeagueParticipantWasCreated extends AbstractEvent
@@ -12,30 +13,36 @@ class LeagueParticipantWasCreated extends AbstractEvent
     private $team;
 
     /**
-     * @var string
+     * @var League
      */
-    private $leagueId;
+    private $league;
     
     /**
      * @param string $aggregateId
      * @param Team $team
      * @param string $leagueId
      */
-    public function __construct($aggregateId, Team $team, $leagueId, $happenedAt)
+    public function __construct($aggregateId, Team $team, League $league, $happenedAt)
     {
         $this->aggregateId = $aggregateId;
         $this->team = $team;
-        $this->leagueId = $leagueId;
+        $this->league = $league;
         $this->happenedAt = $happenedAt;
     }
 
+    /**
+     * @return Team
+     */
     public function getTeam()
     {
         return $this->team;
     }
 
-    public function getLeagueId()
+    /**
+     * @return League
+     */
+    public function getLeague()
     {
-        return $this->leagueId;
+        return $this->league;
     }
 }

@@ -48,7 +48,6 @@ class LeagueParticipantTest extends AbstractDomainObjectTest
         $this->gameOutcomeResolverMock = $this->getMockBuilder(GameOutcomeResolver::class)->disableOriginalConstructor()->getMock();
 
         $this->competitionMock = $this->getMockBuilder(League::class)->disableOriginalConstructor()->getMock();
-        $this->competitionMock->method('getAggregateId')->willReturn('League');
 
         $this->gameMock = $this->getMockBuilder(Game::class)->disableOriginalConstructor()->getMock();
         $this->gameMock->method('getCompetition')->willReturn($this->competitionMock);
@@ -67,10 +66,10 @@ class LeagueParticipantTest extends AbstractDomainObjectTest
 
     public function testCreate()
     {
-        $this->participant = LeagueParticipant::create($this->teamMock, $this->competitionMock->getAggregateId());
+        $this->participant = LeagueParticipant::create($this->teamMock, $this->competitionMock);
 
         $this->assertEquals($this->participant->getTeam(), $this->teamMock);
-        $this->assertEquals($this->participant->getCompetitionId(), $this->competitionMock->getAggregateId());
+        $this->assertEquals($this->participant->getCompetition(), $this->competitionMock);
 
         $this->assertEventOnDomainObjectWasCreated($this->participant, LeagueParticipantWasCreated::class);
     }
