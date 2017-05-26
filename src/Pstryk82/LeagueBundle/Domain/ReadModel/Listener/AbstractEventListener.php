@@ -8,6 +8,7 @@ use Pstryk82\LeagueBundle\Storage\ProjectionStorage;
 
 abstract class AbstractEventListener
 {
+    protected $time;
     /**
      * @var ProjectionStorage
      */
@@ -21,6 +22,8 @@ abstract class AbstractEventListener
     {
         $eventBus->registerListener($this);
         $this->projectionStorage = $projectionStorage;
+        $this->time = time();
+        $this->currentTime = time();
     }
     /**
      * @param DomainEvent $event
@@ -28,8 +31,6 @@ abstract class AbstractEventListener
     public function when(AbstractEvent $event)
     {
         $method = 'on' . (new \ReflectionClass($event))->getShortName();
-//        $method = explode('\\', get_class($event));
-//        $method = 'on' . end($method);
         if (method_exists($this, $method)) {
             $this->$method($event);
         }

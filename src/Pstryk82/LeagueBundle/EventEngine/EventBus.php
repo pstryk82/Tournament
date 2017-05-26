@@ -22,9 +22,9 @@ class EventBus
     public function dispatch(array $events)
     {
         /** @var AbstractEvent $event */
-        foreach ($events as $event) {
+        foreach ($events as &$event) {
             /** @var AbstractEventListener $listener */
-            foreach ($this->listeners as $listener) {
+            foreach ($this->listeners as &$listener) {
                 $listener->when($event);
             }
         }

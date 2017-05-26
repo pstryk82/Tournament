@@ -87,8 +87,9 @@ class LeagueScheduler
      * 
      * @return Game[]
      */
-    private function matchOtherParticipants(array &$participants, &$firstOnePlaysHome, League $league)
+    private function matchOtherParticipants(array $participants, &$firstOnePlaysHome, League $league)
     {
+        $games = [];
         while (!empty($participants)) {
             if ($firstOnePlaysHome) {
                 $home = array_shift($participants);

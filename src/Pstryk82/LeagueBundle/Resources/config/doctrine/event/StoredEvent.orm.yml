@@ -1,6 +1,9 @@
 Pstryk82\LeagueBundle\Entity\StoredEvent:
     type: entity
     table: null
+    indexes:
+        aggregateIdIndex:
+            columns: [aggregate_id]
     repositoryClass: Pstryk82\LeagueBundle\Repository\StoredEventRepository
     id:
         id:
@@ -10,6 +13,7 @@ Pstryk82\LeagueBundle\Entity\StoredEvent:
                 strategy: AUTO
     fields:
         aggregateId:
+            column: aggregate_id
             type: string
             length: '13'
             unique: false

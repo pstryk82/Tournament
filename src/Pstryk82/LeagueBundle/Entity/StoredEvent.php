@@ -2,6 +2,8 @@
 
 namespace Pstryk82\LeagueBundle\Entity;
 
+use Pstryk82\LeagueBundle\Event\AbstractEvent;
+
 /**
  * StoredEvent
  */
@@ -101,7 +103,7 @@ class StoredEvent
     /**
      * Set event
      *
-     * @param string $event
+     * @param AbstractEvent $event
      *
      * @return StoredEvent
      */

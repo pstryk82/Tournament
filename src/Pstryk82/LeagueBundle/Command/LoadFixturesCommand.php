@@ -177,7 +177,7 @@ class LoadFixturesCommand extends ContainerAwareCommand
         $leagueHistory = new LeagueHistory($this->leagueId, $this->eventStorage);
         $league = League::reconstituteFrom($leagueHistory);
 
-        foreach ($this->teamIds as $teamId) {
+        foreach ($this->teamIds as &$teamId) {
             $teamHistory = new TeamHistory($teamId, $this->eventStorage);
             $team = Team::reconstituteFrom($teamHistory);
 
@@ -195,7 +195,7 @@ class LoadFixturesCommand extends ContainerAwareCommand
         $league = League::reconstituteFrom($leagueHistory);
 
         $this->participants = [];
-        foreach ($this->participantIds as $participantId) {
+        foreach ($this->participantIds as &$participantId) {
             $participantHistory = new ParticipantHistory($participantId, $this->eventStorage);
             $participant = LeagueParticipant::reconstituteFrom($participantHistory);
             $this->participants[] = $participant;
@@ -205,14 +205,14 @@ class LoadFixturesCommand extends ContainerAwareCommand
         $scheduler = new LeagueScheduler();
         $schedule = $scheduler->generateSchedule($this->participants, $league);
 
-        foreach ($schedule as $round) {
-            foreach ($round as $game) {
+        foreach ($schedule as &$round) {
+            foreach ($round as &$game) {
                 $this->generateGameResults($game);
             }
         }
 
 
-        foreach ($this->participants as $participant) {
+        foreach ($this->participants as &$participant) {
             $this->eventBus->dispatch($participant->getEvents());
             $this->eventStorage->add($participant);
             $this->eventBus->dispatch($participant->getTeam()->getEvents());

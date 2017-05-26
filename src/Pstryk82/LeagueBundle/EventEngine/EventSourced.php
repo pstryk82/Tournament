@@ -31,8 +31,9 @@ trait EventSourced
      */
     private function apply(AbstractEvent $event)
     {
-        $method = explode('\\', get_class($event));
-        $method = 'apply' . end($method);
+        $method = 'apply' . (new \ReflectionClass($event))->getShortName();
+//        $method = explode('\\', get_class($event));
+//        $method = 'apply' . end($method);
         $this->$method($event);
     }
 

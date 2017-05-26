@@ -80,8 +80,8 @@ class LeagueParticipant extends AbstractParticipant
         $this->recordThat($participantHasWonEvent);
         $this->apply($participantHasWonEvent);
 
-        $team = $this->getTeam();
-        $team->recordRankPoints($game->getCompetition()->getRankPointsForWin());
+//        $team = $this->getTeam();
+        $this->team->recordRankPoints($game->getCompetition()->getRankPointsForWin());
     }
 
     /**
@@ -110,8 +110,8 @@ class LeagueParticipant extends AbstractParticipant
         $this->recordThat($participantHasLostEvent);
         $this->apply($participantHasLostEvent);
 
-        $team = $this->getTeam();
-        $team->recordRankPoints($game->getCompetition()->getRankPointsForLose());
+//        $team = $this->getTeam();
+        $this->team->recordRankPoints($game->getCompetition()->getRankPointsForLose());
     }
 
     /**
@@ -138,8 +138,8 @@ class LeagueParticipant extends AbstractParticipant
         $this->recordThat($participantHasDrawnEvent);
         $this->apply($participantHasDrawnEvent);
 
-        $team = $this->getTeam();
-        $team->recordRankPoints($game->getCompetition()->getRankPointsForDraw());
+//        $team = $this->getTeam();
+        $this->team->recordRankPoints($game->getCompetition()->getRankPointsForDraw());
     }
 
     /**
