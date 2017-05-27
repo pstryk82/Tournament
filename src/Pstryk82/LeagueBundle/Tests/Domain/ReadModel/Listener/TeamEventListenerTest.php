@@ -8,7 +8,7 @@ use Pstryk82\LeagueBundle\Event\TeamGainedRankPoints;
 use Pstryk82\LeagueBundle\Event\TeamWasCreated;
 
 
-class TeamEventListenerTest extends AbstractEventListnerTest
+class TeamEventListenerTest extends AbstractEventListenerTest
 {
     /**
      * @var TeamEventListener

@@ -16,7 +16,7 @@ use Pstryk82\LeagueBundle\Event\ParticipantHasDrawn;
 use Pstryk82\LeagueBundle\Event\ParticipantHasLost;
 use Pstryk82\LeagueBundle\Event\ParticipantHasWon;
 
-class LeagueParticipantEventListenerTest extends AbstractEventListnerTest
+class LeagueParticipantEventListenerTest extends AbstractEventListenerTest
 {
     /**
      * @var LeagueParticipantEventListener

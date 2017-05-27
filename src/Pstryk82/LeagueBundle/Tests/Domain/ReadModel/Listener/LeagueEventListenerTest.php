@@ -7,7 +7,7 @@ use Pstryk82\LeagueBundle\Domain\ReadModel\Projection\LeagueProjection;
 use Pstryk82\LeagueBundle\Event\LeagueWasCreated;
 use Pstryk82\LeagueBundle\Event\LeagueWasFinished;
 
-class LeagueEventListenerTest extends AbstractEventListnerTest
+class LeagueEventListenerTest extends AbstractEventListenerTest
 {
     /**
      * @var LeagueEventListener
