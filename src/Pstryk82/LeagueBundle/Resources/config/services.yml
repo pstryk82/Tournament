@@ -11,20 +11,21 @@ services:
         arguments:
             - Pstryk82\LeagueBundle\Entity\StoredEvent
 
-    pstryk82.league.event_bus:
-        class: Pstryk82\LeagueBundle\EventEngine\EventBus
-
     pstryk82.league.listener.league:
         class: Pstryk82\LeagueBundle\Domain\ReadModel\Listener\LeagueEventListener
         arguments:
-            - '@pstryk82.league.event_bus'
             - '@pstryk82.league.projection_storage'
+        tags:
+            - { name: kernel.event_listener, event: pstryk82.league.event.league_was_created, method: onLeagueWasCreated }
+            - { name: kernel.event_listener, event: pstryk82.league.event.league_was_finished, method: onLeagueWasFinished }
 
     pstryk82.league.listener.team:
         class: Pstryk82\LeagueBundle\Domain\ReadModel\Listener\TeamEventListener
         arguments:
-            - '@pstryk82.league.event_bus'
             - '@pstryk82.league.projection_storage'
+        tags:
+            - { name: kernel.event_listener, event: pstryk82.team.event.team_was_created, method: onTeamWasCreated }
+            - { name: kernel.event_listener, event: pstryk82.team.event.team_gained_rank_points, method: onTeamGainedRankPoints }
 
     pstryk82.league.projection_storage:
         class: Pstryk82\LeagueBundle\Storage\ProjectionStorage
@@ -41,11 +42,17 @@ services:
     pstryk82.league.listener.league_participant:
         class: Pstryk82\LeagueBundle\Domain\ReadModel\Listener\LeagueParticipantEventListener
         arguments:
-            - '@pstryk82.league.event_bus'
             - '@pstryk82.league.projection_storage'
+        tags:
+            - { name: kernel.event_listener, event: pstryk82.league_participant.event.league_participant_was_created, method: onLeagueParticipantWasCreated }
+            - { name: kernel.event_listener, event: pstryk82.competition.event.participant_has_drawn, method: onParticipantHasDrawn }
+            - { name: kernel.event_listener, event: pstryk82.competition.event.participant_has_won, method: onParticipantHasWon }
+            - { name: kernel.event_listener, event: pstryk82.competition.event.participant_has_lost, method: onParticipantHasLost }
 
     pstryk82.league.listener.game:
         class: Pstryk82\LeagueBundle\Domain\ReadModel\Listener\GameEventListener
         arguments:
-            - '@pstryk82.league.event_bus'
             - '@pstryk82.league.projection_storage'
+        tags:
+            - { name: kernel.event_listener, event: pstryk82.game.event.game_was_planned, method: onGameWasPlanned }
+            - { name: kernel.event_listener, event: pstryk82.game.event.game_was_played, method: onGameWasPlayed }

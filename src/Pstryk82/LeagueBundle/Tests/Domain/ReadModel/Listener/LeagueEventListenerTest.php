@@ -17,7 +17,7 @@ class LeagueEventListenerTest extends AbstractEventListnerTest
     public function setUp()
     {
         parent::setUp();
-        $this->listener = new LeagueEventListener($this->eventBusMock, $this->projectionStorageMock);
+        $this->listener = new LeagueEventListener($this->projectionStorageMock);
     }
 
     public function tearDown()

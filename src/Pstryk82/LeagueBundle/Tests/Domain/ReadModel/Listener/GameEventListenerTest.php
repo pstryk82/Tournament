@@ -21,7 +21,7 @@ class GameEventListenerTest extends AbstractEventListnerTest
     public function setup()
     {
         parent::setup();
-        $this->listener = new GameEventListener($this->eventBusMock, $this->projectionStorageMock);
+        $this->listener = new GameEventListener($this->projectionStorageMock);
     }
 
     public function tearDown()

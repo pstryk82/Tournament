@@ -7,6 +7,7 @@ use Pstryk82\LeagueBundle\Domain\Aggregate\Competition;
 
 class GameWasPlanned extends AbstractEvent
 {
+    protected $eventName = 'pstryk82.game.event.game_was_planned';
     /**
      * @var AbstractParticipant
      */

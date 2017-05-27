@@ -4,6 +4,7 @@ namespace Pstryk82\LeagueBundle\Event;
 
 class LeagueWasCreated extends AbstractEvent
 {
+    protected $eventName = 'pstryk82.league.event.league_was_created';
     private $name;
     private $season;
     private $rankPointsForWin;

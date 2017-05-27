@@ -4,7 +4,7 @@ namespace Pstryk82\LeagueBundle\Event;
 
 use Pstryk82\LeagueBundle\Domain\Aggregate\Competition;
 
-class AbstractParticipantHasFinishedGame extends AbstractEvent
+abstract class AbstractParticipantHasFinishedGame extends AbstractEvent
 {
     /**
      * @var Competition

@@ -7,6 +7,8 @@ use Pstryk82\LeagueBundle\Domain\Logic\GameOutcomeResolver;
 
 class ParticipantHasWon extends AbstractParticipantHasNotDrawn
 {
+    protected $eventName = 'pstryk82.competition.event.participant_has_won';
+
     /**
      * @param Competition $competition
      * @param GameOutcomeResolver $gameOutcomeResolver

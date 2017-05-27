@@ -2,8 +2,12 @@
 
 namespace Pstryk82\LeagueBundle\Event;
 
-abstract class AbstractEvent
+use Symfony\Component\EventDispatcher\Event;
+
+abstract class AbstractEvent extends Event
 {
+    protected $eventName;
+
     /**
      * @var string
      */
@@ -28,5 +32,11 @@ abstract class AbstractEvent
     public function getHappenedAt()
     {
         return $this->happenedAt;
+    }
+
+
+    public function getEventName()
+    {
+        return $this->eventName;
     }
 }
