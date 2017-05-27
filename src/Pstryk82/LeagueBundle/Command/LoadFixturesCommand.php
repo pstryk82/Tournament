@@ -2,6 +2,7 @@
 
 namespace Pstryk82\LeagueBundle\Command;
 
+use Pstryk82\LeagueBundle\Domain\Aggregate\AggregateInterface;
 use Pstryk82\LeagueBundle\Domain\Aggregate\Game;
 use Pstryk82\LeagueBundle\Domain\Aggregate\History\LeagueHistory;
 use Pstryk82\LeagueBundle\Domain\Aggregate\History\ParticipantHistory;
@@ -9,13 +10,12 @@ use Pstryk82\LeagueBundle\Domain\Aggregate\History\TeamHistory;
 use Pstryk82\LeagueBundle\Domain\Aggregate\League;
 use Pstryk82\LeagueBundle\Domain\Aggregate\LeagueParticipant;
 use Pstryk82\LeagueBundle\Domain\Aggregate\Team;
-use Pstryk82\LeagueBundle\Domain\Exception\GameLogicException;
-use Pstryk82\LeagueBundle\EventEngine\EventBus;
 use Pstryk82\LeagueBundle\Scheduler\LeagueScheduler;
 use Pstryk82\LeagueBundle\Storage\EventStorage;
 use Symfony\Bundle\FrameworkBundle\Command\ContainerAwareCommand;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
+use Symfony\Component\EventDispatcher\EventDispatcherInterface;
 
 /**
  * {@codeCoverageIgnore}
@@ -28,9 +28,9 @@ class LoadFixturesCommand extends ContainerAwareCommand
     private $eventStorage;
 
     /**
-     * @var EventBus
+     * @var EventDispatcherInterface
      */
-    private $eventBus;
+    private $eventDispatcher;
 
     /**
      * @var string
@@ -57,15 +57,8 @@ class LoadFixturesCommand extends ContainerAwareCommand
 
     protected function execute(InputInterface $input, OutputInterface $output)
     {
-        // need to initialize listeners explicitly so they register themselves in the EventBus
-        $this->leagueProjectionListener = $this->getContainer()->get('pstryk82.league.listener.league');
-        $this->teamEventListener = $this->getContainer()->get('pstryk82.league.listener.team');
-        $this->leagueParticipantEventListener = $this->getContainer()->get('pstryk82.league.listener.league_participant');
-        $this->gameEventListener = $this->getContainer()->get('pstryk82.league.listener.game');
-
-        
         $this->eventStorage = $this->getContainer()->get('pstryk82.league.event_storage');
-        $this->eventBus = $this->getContainer()->get('pstryk82.league.event_bus');
+        $this->eventDispatcher = $this->getContainer()->get('event_dispatcher');
 
         $entityManagerEvents = $this->getContainer()->get('doctrine.orm.events_entity_manager');
         $entityManagerEvents->getConnection()->exec('TRUNCATE TABLE stored_event');
@@ -107,12 +100,17 @@ class LoadFixturesCommand extends ContainerAwareCommand
             2
         );
         
-        $this->eventBus->dispatch($league->getEvents());
         $this->eventStorage->add($league);
-
+        $this->dispatchEvents($league);
         $this->leagueId = $league->getAggregateId();
     }
 
+    private function dispatchEvents(AggregateInterface $aggregate)
+    {
+        foreach ($aggregate->getEvents() as $event) {
+            $this->eventDispatcher->dispatch($event->getEventName(), $event);
+        }
+    }
 
     public function executeTeamsFixtures()
     {
@@ -166,8 +164,8 @@ class LoadFixturesCommand extends ContainerAwareCommand
                 $teamRecord['stadium']
             );
 
-            $this->eventBus->dispatch($team->getEvents());
             $this->eventStorage->add($team);
+            $this->dispatchEvents($team);
             $this->teamIds[] = $team->getAggregateId();
         }
     }
@@ -182,8 +180,8 @@ class LoadFixturesCommand extends ContainerAwareCommand
             $team = Team::reconstituteFrom($teamHistory);
 
             $participant = $team->registerInLeague($league);
-            $this->eventBus->dispatch($participant->getEvents());
             $this->eventStorage->add($participant);
+            $this->dispatchEvents($participant);
             $this->participantIds[] = $participant->getAggregateId();
         }
     }
@@ -213,10 +211,10 @@ class LoadFixturesCommand extends ContainerAwareCommand
 
 
         foreach ($this->participants as $participant) {
-            $this->eventBus->dispatch($participant->getEvents());
             $this->eventStorage->add($participant);
-            $this->eventBus->dispatch($participant->getTeam()->getEvents());
+            $this->dispatchEvents($participant);
             $this->eventStorage->add($participant->getTeam());
+            $this->dispatchEvents($participant->getTeam());
         }
     }
 
@@ -227,8 +225,8 @@ class LoadFixturesCommand extends ContainerAwareCommand
     {
         $game->recordResult(mt_rand(0, 3), mt_rand(0, 3));
 
-        $this->eventBus->dispatch($game->getEvents());
         $this->eventStorage->add($game);
+        $this->dispatchEvents($game);
     }
 
     public function executeFinishLeague()
@@ -236,8 +234,7 @@ class LoadFixturesCommand extends ContainerAwareCommand
         $leagueHistory = new LeagueHistory($this->leagueId, $this->eventStorage);
         $league = League::reconstituteFrom($leagueHistory);
         $league->finish();
-        $this->eventBus->dispatch($league->getEvents());
         $this->eventStorage->add($league);
+        $this->dispatchEvents($league);
     }
-
 }

@@ -4,6 +4,8 @@ namespace Pstryk82\LeagueBundle\Event;
 
 class TeamWasCreated extends AbstractEvent
 {
+    protected $eventName = 'pstryk82.team.event.team_was_created';
+
     /**
      * @var string
      */

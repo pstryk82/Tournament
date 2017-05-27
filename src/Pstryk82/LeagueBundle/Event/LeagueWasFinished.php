@@ -4,6 +4,8 @@ namespace Pstryk82\LeagueBundle\Event;
 
 class LeagueWasFinished extends AbstractEvent
 {
+    protected $eventName = 'pstryk82.league.event.league_was_finished';
+    
     /**
      * @var bool
      */

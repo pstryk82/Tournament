@@ -3,7 +3,6 @@
 namespace Pstryk82\LeagueBundle\Domain\ReadModel\Listener;
 
 use Pstryk82\LeagueBundle\Event\AbstractEvent;
-use Pstryk82\LeagueBundle\EventEngine\EventBus;
 use Pstryk82\LeagueBundle\Storage\ProjectionStorage;
 
 abstract class AbstractEventListener
@@ -14,12 +13,10 @@ abstract class AbstractEventListener
     protected $projectionStorage;
 
     /**
-     * @param EventBus $eventBus
      * @param ProjectionStorage $projectionStorage
      */
-    public function __construct(EventBus $eventBus, ProjectionStorage $projectionStorage)
+    public function __construct(ProjectionStorage $projectionStorage)
     {
-        $eventBus->registerListener($this);
         $this->projectionStorage = $projectionStorage;
     }
     /**

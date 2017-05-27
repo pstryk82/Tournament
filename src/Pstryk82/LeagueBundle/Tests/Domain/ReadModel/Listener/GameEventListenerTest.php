@@ -11,7 +11,7 @@ use Pstryk82\LeagueBundle\Domain\ReadModel\Projection\GameProjection;
 use Pstryk82\LeagueBundle\Event\GameWasPlanned;
 use Pstryk82\LeagueBundle\Event\GameWasPlayed;
 
-class GameEventListenerTest extends AbstractEventListnerTest
+class GameEventListenerTest extends AbstractEventListenerTest
 {
     /**
      * @var GameEventListener
@@ -21,7 +21,7 @@ class GameEventListenerTest extends AbstractEventListnerTest
     public function setup()
     {
         parent::setup();
-        $this->listener = new GameEventListener($this->eventBusMock, $this->projectionStorageMock);
+        $this->listener = new GameEventListener($this->projectionStorageMock);
     }
 
     public function tearDown()

@@ -16,7 +16,7 @@ use Pstryk82\LeagueBundle\Event\ParticipantHasDrawn;
 use Pstryk82\LeagueBundle\Event\ParticipantHasLost;
 use Pstryk82\LeagueBundle\Event\ParticipantHasWon;
 
-class LeagueParticipantEventListenerTest extends AbstractEventListnerTest
+class LeagueParticipantEventListenerTest extends AbstractEventListenerTest
 {
     /**
      * @var LeagueParticipantEventListener
@@ -27,7 +27,7 @@ class LeagueParticipantEventListenerTest extends AbstractEventListnerTest
     public function setup()
     {
         parent::setup();
-        $this->listener = new LeagueParticipantEventListener($this->eventBusMock, $this->projectionStorageMock);
+        $this->listener = new LeagueParticipantEventListener($this->projectionStorageMock);
     }
 
     public function tearDown()

@@ -6,6 +6,8 @@ use Pstryk82\LeagueBundle\Event\AbstractEvent;
 
 class GameWasPlayed extends AbstractEvent
 {
+    protected $eventName = 'pstryk82.game.event.game_was_played';
+
     private $homeScore;
     private $awayScore;
     private $played;

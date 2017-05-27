@@ -7,6 +7,7 @@ use Pstryk82\LeagueBundle\Domain\Aggregate\Team;
 
 class LeagueParticipantWasCreated extends AbstractEvent
 {
+    protected $eventName = 'pstryk82.league_participant.event.league_participant_was_created';
     /**
      * @var Team
      */

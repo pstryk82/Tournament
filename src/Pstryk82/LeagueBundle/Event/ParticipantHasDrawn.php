@@ -6,6 +6,7 @@ use Pstryk82\LeagueBundle\Domain\Aggregate\Competition;
 
 class ParticipantHasDrawn extends AbstractParticipantHasFinishedGame
 {
+    protected $eventName = 'pstryk82.competition.event.participant_has_drawn';
     /**
      * @var int
      */

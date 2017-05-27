@@ -4,6 +4,8 @@ namespace Pstryk82\LeagueBundle\Event;
 
 class TeamGainedRankPoints extends AbstractEvent
 {
+    protected $eventName = 'pstryk82.team.event.team_gained_rank_points';
+
     /**
      * @var int
      */
