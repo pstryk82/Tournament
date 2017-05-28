@@ -114,54 +114,15 @@ class LoadFixturesCommand extends ContainerAwareCommand
 
     public function executeTeamsFixtures()
     {
-        $teamData = [
-            [
-                'name' => 'Real Madrid CF',
-                'rank' => 144428,
-                'stadium' => 'Santiago Bernabeu',
-            ],
-            [
-                'name' => 'FC Bayern Muenchen',
-                'rank' => 134528,
-                'stadium' => 'Allianz Arena',
-            ],
-            [
-                'name' => 'FC Barcelona',
-                'rank' => 129428,
-                'stadium' => 'Camp Nou',
-            ],
-            [
-                'name' => 'Club Atletico de Madrid',
-                'rank' => 114428,
-                'stadium' => 'Vicente Calderon',
-            ],
-            [
-                'name' => 'Juventus',
-                'rank' => 109199,
-                'stadium' => 'Juventus Stadium',
-            ],
-            [
-                'name' => 'Paris Saint-Germain',
-                'rank' => 108066,
-                'stadium' => 'Parc des Princes',
-            ],
-            [
-                'name' => 'Borussia Dortmund',
-                'rank' => 104528,
-                'stadium' => 'Signal Iduna Park',
-            ],
-            [
-                'name' => 'Chelsea FC',
-                'rank' => 103763,
-                'stadium' => 'Stamford Bridge',
-            ],
-        ];
+        $teamData = json_decode(
+            file_get_contents('./src/Pstryk82/LeagueBundle/DataFixtures/teams_8.json')
+        );
 
         foreach ($teamData as $teamRecord) {
             $team = Team::create(
-                $teamRecord['name'],
-                $teamRecord['rank'],
-                $teamRecord['stadium']
+                $teamRecord->name,
+                $teamRecord->rank,
+                $teamRecord->stadium
             );
 
             $this->eventStorage->add($team);

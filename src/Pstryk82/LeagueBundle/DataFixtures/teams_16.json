@@ -1,0 +1,67 @@
+[
+    {
+        "name": "Real Madrid CF",
+        "rank": 174942,
+        "stadium": "Santiago Bernabeu"
+    }, {
+        "name": "FC Bayern Muenchen",
+        "rank": 154899,
+        "stadium": "Allianz Arena"
+    }, {
+        "name": "FC Barcelona",
+        "rank": 151942,
+        "stadium": "Camp Nou"
+    }, {
+        "name": "Club Atletico de Madrid",
+        "rank": 142942,
+        "stadium": "Vicente Calderon"
+    }, {
+        "name": "Juventus",
+        "rank": 140666,
+        "stadium": "Juventus Stadium"
+    }, {
+        "name": "Paris Saint-Germain",
+        "rank": 126333,
+        "stadium": "Parc des Princes"
+    }, {
+        "name": "Borussia Dortmund",
+        "rank": 124899,
+        "stadium": "Signal Iduna Park"
+    }, {
+        "name": "Sevilla FC",
+        "rank": 112942,
+        "stadium": "Estadio Ramon Sanchez Pizjuan"
+    }, {
+        "name": "SL Benfica",
+        "rank": 111866,
+        "stadium": "Estadio da Luz"
+    }, {
+        "name": "Chelsea FC",
+        "rank": 106192,
+        "stadium": "Stamford Bridge"
+    }, {
+        "name": "Arsenal FC",
+        "rank": 105192,
+        "stadium": "Emirates Staduim"
+    }, {
+        "name": "Manchester City FC",
+        "rank": 100192,
+        "stadium": "Etihad Stadium"
+    }, {
+        "name": "FC Porto",
+        "rank": 98866,
+        "stadium": "Estadio do Dragao"
+    }, {
+        "name": "FC Schalke 04",
+        "rank": 96899,
+        "stadium": "Arena auf Schalke"
+    }, {
+        "name": "Manchester United FC",
+        "rank": 95192,
+        "stadium": "Old Trafford"
+    }, {
+        "name": "Bayer 04 Leverkusen",
+        "rank": 90899,
+        "stadium": "BayArena"
+    }
+]

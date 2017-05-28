@@ -1,0 +1,35 @@
+[
+    {
+        "name": "Real Madrid CF",
+        "rank": 174942,
+        "stadium": "Santiago Bernabeu"
+    }, {
+        "name": "FC Bayern Muenchen",
+        "rank": 154899,
+        "stadium": "Allianz Arena"
+    }, {
+        "name": "FC Barcelona",
+        "rank": 151942,
+        "stadium": "Camp Nou"
+    }, {
+        "name": "Club Atletico de Madrid",
+        "rank": 142942,
+        "stadium": "Vicente Calderon"
+    }, {
+        "name": "Juventus",
+        "rank": 140666,
+        "stadium": "Juventus Stadium"
+    }, {
+        "name": "Paris Saint-Germain",
+        "rank": 126333,
+        "stadium": "Parc des Princes"
+    }, {
+        "name": "Borussia Dortmund",
+        "rank": 124899,
+        "stadium": "Signal Iduna Park"
+    }, {
+        "name": "Sevilla FC",
+        "rank": 112942,
+        "stadium": "Estadio Ramon Sanchez Pizjuan"
+    }
+]
