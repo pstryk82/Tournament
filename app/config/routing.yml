@@ -1,7 +1,7 @@
-#pstryk82_league:
-#    resource: "@Pstryk82LeagueBundle/Resources/config/routing.yml"
-#    prefix:   /
+pstryk82_league:
+    resource: "@Pstryk82LeagueBundle/Resources/config/routing.yml"
+    prefix:   /
 
-app:
-    resource: "@AppBundle/Controller/"
-    type:     annotation
+#app:
+#    resource: "@AppBundle/Controller/"
+#    type:     annotation
