@@ -77,7 +77,7 @@ class LoadFixturesCommand extends ContainerAwareCommand
         $this->executeTeamsFixtures();
         $this->executeParticipantsFixtures();
         $this->executeGamesFixtures();
-//        $this->executeFinishLeague();
+        $this->executeFinishLeague();
 
         $output->writeln(
             sprintf(
@@ -183,7 +183,7 @@ class LoadFixturesCommand extends ContainerAwareCommand
      */
     private function generateGameResults(Game $game)
     {
-//        $game->recordResult(mt_rand(0, 3), mt_rand(0, 3));
+        $game->recordResult(mt_rand(0, 3), mt_rand(0, 3));
 
         $this->eventStorage->add($game);
         $this->dispatchEvents($game);

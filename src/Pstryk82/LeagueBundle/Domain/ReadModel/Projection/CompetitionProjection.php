@@ -206,12 +206,8 @@ abstract class CompetitionProjection
     /**
      * @return ArrayCollection
      */
-    public function getGames($round = null)
+    public function getGames()
     {
-        //$this->games->matching
-        if (!is_null($round) && isset($this->games[$round])) {
-            return $this->games->get($round);
-        }
         return $this->games;
     }
 

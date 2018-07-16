@@ -61,5 +61,12 @@ services:
     pstryk82.league.controller.show_round:
         class: Pstryk82\LeagueBundle\Controller\ShowRoundController
         arguments:
-            - '@pstryk82.league.event_storage'
             - '@doctrine.orm.projections_entity_manager'
+
+
+
+
+    pstryk82.league.listener.api_exception:
+        class: Pstryk82\LeagueBundle\Exception\ApiExceptionListener
+        tags:
+            - {name: kernel.event_listener, event: kernel.exception}

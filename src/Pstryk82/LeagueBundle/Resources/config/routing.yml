@@ -1,3 +1,3 @@
 pstryk82_league_round:
     path: /league/{leagueId}/round/{round}
-    defaults: { _controller: pstryk82.league.controller.show_round:showRoundAction, _format: html }
+    defaults: { _controller: pstryk82.league.controller.show_round:showRoundAction, _format: json }
