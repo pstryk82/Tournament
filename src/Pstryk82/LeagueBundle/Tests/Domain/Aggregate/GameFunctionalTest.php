@@ -59,7 +59,7 @@ class GameFunctionalTest extends \PHPUnit_Framework_TestCase
         $this->awayTeam = Team::create('Legia', 1234, 'Stadion Wojska Polskiego');
         $this->awayParticipant = LeagueParticipant::create($this->awayTeam, $this->competition);
         $this->game = Game::create(
-                $this->homeParticipant, $this->awayParticipant, $this->competition, $this->now
+                $this->homeParticipant, $this->awayParticipant, $this->competition, $this->now, 1
         );
     }
 
@@ -83,7 +83,7 @@ class GameFunctionalTest extends \PHPUnit_Framework_TestCase
         $history->method('getEvents')->willReturn(
             [
                 new GameWasPlanned(
-                    $this->game->getAggregateId(), $this->homeParticipant, $this->awayParticipant, $this->competition, new \DateTime('2017-04-14'), $this->now
+                    $this->game->getAggregateId(), $this->homeParticipant, $this->awayParticipant, $this->competition, new \DateTime('2017-04-14'), $this->now, $this->game->getRound()
                 ),
                 new GameWasPlayed(
                     $this->game->getAggregateId(), 0, 1, new \DateTime('2017-04-14')

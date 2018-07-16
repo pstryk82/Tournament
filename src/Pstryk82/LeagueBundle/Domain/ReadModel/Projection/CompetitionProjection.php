@@ -3,6 +3,7 @@
 namespace Pstryk82\LeagueBundle\Domain\ReadModel\Projection;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Pstryk82\LeagueBundle\Domain\Aggregate\Game;
 
 abstract class CompetitionProjection
 {
@@ -205,8 +206,12 @@ abstract class CompetitionProjection
     /**
      * @return ArrayCollection
      */
-    public function getGames()
+    public function getGames($round = null)
     {
+        //$this->games->matching
+        if (!is_null($round) && isset($this->games[$round])) {
+            return $this->games->get($round);
+        }
         return $this->games;
     }
 

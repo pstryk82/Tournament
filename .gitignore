@@ -15,4 +15,5 @@
 /vendor/
 /web/bundles/
 /nbproject
+/.idea
 /ideas.txt

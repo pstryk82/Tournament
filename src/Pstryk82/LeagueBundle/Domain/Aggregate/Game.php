@@ -59,6 +59,11 @@ class Game implements AggregateInterface
     private $beginningTime;
 
     /**
+     * @var string
+     */
+    private $round;
+
+    /**
      * @param string $aggregateId
      */
     public function __construct($aggregateId)
@@ -67,15 +72,6 @@ class Game implements AggregateInterface
     }
 
     /**
-     *
-     * @param AbstractParticipant $homeParticipant
-     * @param AbstractParticipant $awayParticipant
-     * @param Competition $competition
-     * @param \DateTime $beginningTime
-     * @param bool $onNeutralGround
-     *
-     * @return $this
-     *
      * @throws GameLogicException
      */
     public static function create(
@@ -83,8 +79,9 @@ class Game implements AggregateInterface
         AbstractParticipant $awayParticipant,
         Competition $competition,
         \DateTime $beginningTime,
+        $round,
         $onNeutralGround = false
-    )
+    ): self
     {
         if ($homeParticipant->getAggregateId() == $awayParticipant->getAggregateId()) {
             throw new GameLogicException(
@@ -97,6 +94,7 @@ class Game implements AggregateInterface
             ->setAwayParticipant($awayParticipant)
             ->setCompetition($competition)
             ->setBeginningTime($beginningTime)
+            ->setRound($round)
             ->setOnNeutralGround($onNeutralGround);
 
         $gameWasPlannedEvent = new GameWasPlanned(
@@ -106,6 +104,7 @@ class Game implements AggregateInterface
             $competition,
             $beginningTime,
             new \DateTime(),
+            $round,
             $onNeutralGround
         );
 
@@ -121,6 +120,7 @@ class Game implements AggregateInterface
             ->setAwayParticipant($event->getAwayParticipant())
             ->setCompetition($event->getCompetition())
             ->setBeginningTime($event->getBeginningTime())
+            ->setRound($event->getRound())
             ->setOnNeutralGround($event->getOnNeutralGround())
         ;
     }
@@ -352,4 +352,18 @@ class Game implements AggregateInterface
     {
         return $this->beginningTime;
     }
+
+    public function getRound()
+    {
+        return $this->round;
+    }
+
+    public function setRound($round)
+    {
+        $this->round = $round;
+
+        return $this;
+    }
+
+
 }

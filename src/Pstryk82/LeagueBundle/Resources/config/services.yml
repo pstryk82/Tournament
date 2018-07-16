@@ -56,3 +56,10 @@ services:
         tags:
             - { name: kernel.event_listener, event: pstryk82.game.event.game_was_planned, method: onGameWasPlanned }
             - { name: kernel.event_listener, event: pstryk82.game.event.game_was_played, method: onGameWasPlayed }
+
+
+    pstryk82.league.controller.show_round:
+        class: Pstryk82\LeagueBundle\Controller\ShowRoundController
+        arguments:
+            - '@pstryk82.league.event_storage'
+            - '@doctrine.orm.projections_entity_manager'

@@ -38,7 +38,7 @@ class LeagueScheduler
      * @param int $round
      * @param bool $firstOnePlaysHome
      * 
-     * @return type
+     * @return []
      */
     private function matchPairs(array $participants, League $league, $round, $firstOnePlaysHome)
     {
@@ -49,7 +49,7 @@ class LeagueScheduler
             $games = [];
         }
         
-        $games = array_merge($games, $this->matchOtherParticipants($participants, $firstOnePlaysHome, $league));
+        $games = array_merge($games, $this->matchOtherParticipants($participants, $firstOnePlaysHome, $league, $round));
 
         return $games;
     }
@@ -68,9 +68,9 @@ class LeagueScheduler
         if (sizeof($participants) % 2 == 0) {
             $zeroth = array_shift($participants);
             if ($round % 2 == 1) {
-                $game = Game::create($zeroth, array_shift($participants), $league, new \DateTime());
+                $game = Game::create($zeroth, array_shift($participants), $league, new \DateTime(), $round);
             } else {
-                $game = Game::create(array_shift($participants), $zeroth, $league, new \DateTime());
+                $game = Game::create(array_shift($participants), $zeroth, $league, new \DateTime(), $round);
             }
 
             return $game;
@@ -87,7 +87,7 @@ class LeagueScheduler
      * 
      * @return Game[]
      */
-    private function matchOtherParticipants(array &$participants, &$firstOnePlaysHome, League $league)
+    private function matchOtherParticipants(array &$participants, &$firstOnePlaysHome, League $league, $round)
     {
         while (!empty($participants)) {
             if ($firstOnePlaysHome) {
@@ -97,7 +97,7 @@ class LeagueScheduler
                 $away = array_shift($participants);
                 $home = array_pop($participants);
             }
-            $game = Game::create($home, $away, $league, new \DateTime());
+            $game = Game::create($home, $away, $league, new \DateTime(), $round);
             $games[] = $game;
             $firstOnePlaysHome = !$firstOnePlaysHome;
         }
