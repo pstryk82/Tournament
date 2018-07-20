@@ -170,7 +170,6 @@ class LoadFixturesCommand extends ContainerAwareCommand
             }
         }
 
-
         foreach ($this->participants as $participant) {
             $this->eventStorage->add($participant);
             $this->dispatchEvents($participant);

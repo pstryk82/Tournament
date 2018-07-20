@@ -50,6 +50,11 @@ class GameProjection
     private $beginningTime;
 
     /**
+     * @var string
+     */
+    private $round;
+
+    /**
      * @param int $id
      */
     public function __construct($id)
@@ -149,6 +154,19 @@ class GameProjection
         $this->beginningTime = $beginningTime;
         return $this;
     }
+
+    public function getRound(): string
+    {
+        return $this->round;
+    }
+
+    public function setRound($round): self
+    {
+        $this->round = $round;
+
+        return $this;
+    }
+
 
 
 }

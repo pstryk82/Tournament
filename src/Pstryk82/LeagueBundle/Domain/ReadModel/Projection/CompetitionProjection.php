@@ -3,6 +3,7 @@
 namespace Pstryk82\LeagueBundle\Domain\ReadModel\Projection;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Pstryk82\LeagueBundle\Domain\Aggregate\Game;
 
 abstract class CompetitionProjection
 {

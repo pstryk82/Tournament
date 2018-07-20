@@ -29,11 +29,16 @@ class GameWasPlanned extends AbstractEvent
     private $beginningTime;
 
     /**
+     * @var string
+     */
+    private $round;
+
+    /**
      * @var bool
      */
     private $onNeutralGround;
 
-    public function __construct($aggregateId, AbstractParticipant $homeParticipant, AbstractParticipant $awayParticipant, Competition $competition, \DateTime $beginningTime, $happenedAt, $onNeutralGround = false)
+    public function __construct($aggregateId, AbstractParticipant $homeParticipant, AbstractParticipant $awayParticipant, Competition $competition, \DateTime $beginningTime, $happenedAt, string $round, $onNeutralGround = false)
     {
         $this->aggregateId = $aggregateId;
         $this->homeParticipant = $homeParticipant;
@@ -41,6 +46,7 @@ class GameWasPlanned extends AbstractEvent
         $this->competition = $competition;
         $this->beginningTime = $beginningTime;
         $this->happenedAt = $happenedAt;
+        $this->round = $round;
         $this->onNeutralGround = $onNeutralGround;
     }
 
@@ -67,6 +73,11 @@ class GameWasPlanned extends AbstractEvent
     public function getOnNeutralGround()
     {
         return $this->onNeutralGround;
+    }
+
+    public function getRound(): string
+    {
+        return $this->round;
     }
 }
 

@@ -22,4 +22,9 @@ Pstryk82\LeagueBundle\Entity\StoredEvent:
             type: text
         happenedAt:
             type: datetime
+    indexes:
+        -
+            name: aggregateIdIndex
+            columns:
+                - aggregate_id
     lifecycleCallbacks: {  }

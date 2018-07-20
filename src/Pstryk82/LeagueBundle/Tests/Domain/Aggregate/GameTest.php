@@ -50,7 +50,7 @@ class GameTest extends AbstractDomainObjectTest
     {
         $competition = $this->getMockBuilder(Competition::class)->disableOriginalConstructor()->getMock();
         $now = new \DateTIme();
-        $this->game = Game::create($this->homeParticipant, $this->awayParticipant, $competition, $now);
+        $this->game = Game::create($this->homeParticipant, $this->awayParticipant, $competition, $now, 1);
 
         $this->assertEquals($this->homeParticipant, $this->game->getHomeParticipant());
         $this->assertEquals($this->awayParticipant, $this->game->getAwayParticipant());
@@ -66,8 +66,8 @@ class GameTest extends AbstractDomainObjectTest
         $competition = $this->getMockBuilder(Competition::class)->disableOriginalConstructor()->getMock();
         $now = new \DateTIme();
 
-        $this->setExpectedException(GameLogicException::class);
-        Game::create($this->homeParticipant, $this->homeParticipant, $competition, $now);
+        $this->expectException(GameLogicException::class);
+        Game::create($this->homeParticipant, $this->homeParticipant, $competition, $now, 1);
     }
 
     public function testRecordResultDraw()

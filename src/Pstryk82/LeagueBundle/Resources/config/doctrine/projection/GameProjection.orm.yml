@@ -6,6 +6,7 @@ Pstryk82\LeagueBundle\Domain\ReadModel\Projection\GameProjection:
         id:
             type: string
             id: true
+            length: '13'
             generator:
                 strategy: NONE
             options:
@@ -25,6 +26,10 @@ Pstryk82\LeagueBundle\Domain\ReadModel\Projection\GameProjection:
         beginningTime:
             type: datetime
             nullable: true
+        round:
+            type: string
+            nullable: false
+            length: '20'
     manyToOne:
         competition:
             targetEntity: Pstryk82\LeagueBundle\Domain\ReadModel\Projection\CompetitionProjection

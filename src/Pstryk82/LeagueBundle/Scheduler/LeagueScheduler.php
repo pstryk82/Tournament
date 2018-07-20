@@ -7,13 +7,7 @@ use Pstryk82\LeagueBundle\Domain\Aggregate\League;
 
 class LeagueScheduler
 {
-    /**
-     * @param array $participants
-     * @param League $league
-     *
-     * @return array
-     */
-    public function generateSchedule(array $participants, League $league)
+    public function generateSchedule(array $participants, League $league): array
     {
         $schedule = [];
         $numberOfParticipants = sizeof($participants);
@@ -32,15 +26,7 @@ class LeagueScheduler
         return $schedule;
     }
 
-    /**
-     * @param array $participants
-     * @param League $league
-     * @param int $round
-     * @param bool $firstOnePlaysHome
-     * 
-     * @return type
-     */
-    private function matchPairs(array $participants, League $league, $round, $firstOnePlaysHome)
+    private function matchPairs(array $participants, League $league, string $round, bool $firstOnePlaysHome): array
     {
         try{
             $games[] = $this->matchFirstParticipant($participants, $round, $league);
@@ -49,28 +35,22 @@ class LeagueScheduler
             $games = [];
         }
         
-        $games = array_merge($games, $this->matchOtherParticipants($participants, $firstOnePlaysHome, $league));
+        $games = array_merge($games, $this->matchOtherParticipants($participants, $firstOnePlaysHome, $league, $round));
 
         return $games;
     }
 
     /**
-     * @param array $participants
-     * @param int $round
-     * @param League $league
-     *
-     * @return Game
-     * 
      * @throws OddNumberOfParticipantsException
      */
-    private function matchFirstParticipant(array &$participants, $round, League $league)
+    private function matchFirstParticipant(array &$participants, string $round, League $league): Game
     {
         if (sizeof($participants) % 2 == 0) {
             $zeroth = array_shift($participants);
             if ($round % 2 == 1) {
-                $game = Game::create($zeroth, array_shift($participants), $league, new \DateTime());
+                $game = Game::create($zeroth, array_shift($participants), $league, new \DateTime(), $round);
             } else {
-                $game = Game::create(array_shift($participants), $zeroth, $league, new \DateTime());
+                $game = Game::create(array_shift($participants), $zeroth, $league, new \DateTime(), $round);
             }
 
             return $game;
@@ -79,15 +59,7 @@ class LeagueScheduler
         throw new OddNumberOfParticipantsException();
     }
 
-    /**
-     *
-     * @param array $participants
-     * @param bool$firstOnePlaysHome
-     * @param League $league
-     * 
-     * @return Game[]
-     */
-    private function matchOtherParticipants(array &$participants, &$firstOnePlaysHome, League $league)
+    private function matchOtherParticipants(array &$participants, &$firstOnePlaysHome, League $league, string $round)
     {
         while (!empty($participants)) {
             if ($firstOnePlaysHome) {
@@ -97,7 +69,7 @@ class LeagueScheduler
                 $away = array_shift($participants);
                 $home = array_pop($participants);
             }
-            $game = Game::create($home, $away, $league, new \DateTime());
+            $game = Game::create($home, $away, $league, new \DateTime(), $round);
             $games[] = $game;
             $firstOnePlaysHome = !$firstOnePlaysHome;
         }

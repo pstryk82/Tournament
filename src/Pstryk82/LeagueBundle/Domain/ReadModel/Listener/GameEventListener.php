@@ -31,6 +31,7 @@ class GameEventListener extends AbstractEventListener
             ->setAwayParticipant($awayParticipantProjection)
             ->setCompetition($competitionProjection)
             ->setBeginningTime($event->getBeginningTime())
+            ->setRound($event->getRound())
             ->setOnNeutralGround($event->getOnNeutralGround())
             ->setPlayed(false);
 
