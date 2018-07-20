@@ -29,8 +29,6 @@ join competition c on ap.competition_id = c.id
 where c.name = "Top Clubs' League"
 order by points desc, goal_difference desc, goals_for desc;
 
-
-select paway.id, g.away_score as A from game as g
 select thome.name as home, taway.name as away, g.home_score as H, g.away_score as A from game as g
 	join abstract_participant as phome on g.home_participant_id = phome.id
 	join abstract_participant as paway on g.away_participant_id = paway.id

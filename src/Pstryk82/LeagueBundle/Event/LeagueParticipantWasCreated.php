@@ -18,11 +18,6 @@ class LeagueParticipantWasCreated extends AbstractEvent
      */
     private $league;
     
-    /**
-     * @param string $aggregateId
-     * @param Team $team
-     * @param string $leagueId
-     */
     public function __construct($aggregateId, Team $team, League $league, $happenedAt)
     {
         $this->aggregateId = $aggregateId;
@@ -34,15 +29,12 @@ class LeagueParticipantWasCreated extends AbstractEvent
     /**
      * @return Team
      */
-    public function getTeam()
+    public function getTeam(): Team
     {
         return $this->team;
     }
 
-    /**
-     * @return League
-     */
-    public function getLeague()
+    public function getLeague(): League
     {
         return $this->league;
     }
