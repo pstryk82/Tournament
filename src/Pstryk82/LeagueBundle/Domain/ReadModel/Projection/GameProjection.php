@@ -50,7 +50,7 @@ class GameProjection
     private $beginningTime;
 
     /**
-     * @var mixed
+     * @var string
      */
     private $round;
 
@@ -155,14 +155,15 @@ class GameProjection
         return $this;
     }
 
-    public function getRound()
+    public function getRound(): string
     {
         return $this->round;
     }
 
-    public function setRound($round)
+    public function setRound($round): self
     {
         $this->round = $round;
+
         return $this;
     }
 

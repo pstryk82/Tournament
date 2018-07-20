@@ -353,12 +353,12 @@ class Game implements AggregateInterface
         return $this->beginningTime;
     }
 
-    public function getRound()
+    public function getRound(): string
     {
         return $this->round;
     }
 
-    public function setRound($round)
+    public function setRound($round): self
     {
         $this->round = $round;
 

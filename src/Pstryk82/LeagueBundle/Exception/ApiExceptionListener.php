@@ -14,10 +14,10 @@ class ApiExceptionListener
         if (!$exception instanceof ApiException) {
             return;
         }
+
         $content = [
             'exceptionMessage' => $exception->getMessage(),
         ];
-
         $response = new JsonResponse($content, $exception->getStatusCode(), $exception->getHeaders());
 
         $event->setResponse($response);

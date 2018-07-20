@@ -7,13 +7,7 @@ use Pstryk82\LeagueBundle\Domain\Aggregate\League;
 
 class LeagueScheduler
 {
-    /**
-     * @param array $participants
-     * @param League $league
-     *
-     * @return array
-     */
-    public function generateSchedule(array $participants, League $league)
+    public function generateSchedule(array $participants, League $league): array
     {
         $schedule = [];
         $numberOfParticipants = sizeof($participants);
@@ -32,15 +26,7 @@ class LeagueScheduler
         return $schedule;
     }
 
-    /**
-     * @param array $participants
-     * @param League $league
-     * @param int $round
-     * @param bool $firstOnePlaysHome
-     * 
-     * @return []
-     */
-    private function matchPairs(array $participants, League $league, $round, $firstOnePlaysHome)
+    private function matchPairs(array $participants, League $league, string $round, bool $firstOnePlaysHome): array
     {
         try{
             $games[] = $this->matchFirstParticipant($participants, $round, $league);
@@ -55,15 +41,9 @@ class LeagueScheduler
     }
 
     /**
-     * @param array $participants
-     * @param int $round
-     * @param League $league
-     *
-     * @return Game
-     * 
      * @throws OddNumberOfParticipantsException
      */
-    private function matchFirstParticipant(array &$participants, $round, League $league)
+    private function matchFirstParticipant(array &$participants, string $round, League $league): Game
     {
         if (sizeof($participants) % 2 == 0) {
             $zeroth = array_shift($participants);
@@ -79,15 +59,7 @@ class LeagueScheduler
         throw new OddNumberOfParticipantsException();
     }
 
-    /**
-     *
-     * @param array $participants
-     * @param bool$firstOnePlaysHome
-     * @param League $league
-     * 
-     * @return Game[]
-     */
-    private function matchOtherParticipants(array &$participants, &$firstOnePlaysHome, League $league, $round)
+    private function matchOtherParticipants(array &$participants, &$firstOnePlaysHome, League $league, string $round)
     {
         while (!empty($participants)) {
             if ($firstOnePlaysHome) {
