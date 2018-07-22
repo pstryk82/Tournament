@@ -60,9 +60,14 @@ services:
     pstryk82.league.controller.show_round:
         class: Pstryk82\LeagueBundle\Controller\ShowRoundController
         arguments:
-            - '@doctrine.orm.projections_entity_manager'
+            - '@pstryk82_league.api_league.round'
 
     pstryk82.league.listener.api_exception:
         class: Pstryk82\LeagueBundle\Exception\ApiExceptionListener
         tags:
             - {name: kernel.event_listener, event: kernel.exception}
+
+    pstryk82_league.api_league.round:
+        class: Pstryk82\LeagueBundle\Api\League\Round
+        arguments:
+            - '@doctrine.orm.projections_entity_manager'

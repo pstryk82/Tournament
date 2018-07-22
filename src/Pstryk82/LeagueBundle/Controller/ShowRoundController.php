@@ -3,57 +3,24 @@
 namespace Pstryk82\LeagueBundle\Controller;
 
 use Doctrine\ORM\EntityManager;
-use Pstryk82\LeagueBundle\Exception\LeagueNotFoundException;
-use Pstryk82\LeagueBundle\Domain\ReadModel\Projection\GameProjection;
-use Pstryk82\LeagueBundle\Domain\ReadModel\Projection\LeagueProjection;
-use Pstryk82\LeagueBundle\Exception\RoundNotFoundException;
-use Pstryk82\LeagueBundle\Storage\EventStorage;
+use Pstryk82\LeagueBundle\Api\League\Round;
 use Symfony\Component\HttpFoundation\JsonResponse;
 
 class ShowRoundController
 {
-    public function __construct(EntityManager $em)
+    /**
+     * @var Round
+     */
+    private $round;
+
+    public function __construct(Round $round)
     {
-        $this->em = $em;
+        $this->round = $round;
     }
 
-    /**
-     * @throws LeagueNotFoundException
-     * @throws RoundNotFoundException
-     */
-    public function showRoundAction($leagueId, $round): JsonResponse
+     public function showRoundAction($leagueId, $round): JsonResponse
     {
-        $leagueProjection = $this->em->getRepository(LeagueProjection::class)->find($leagueId);
-        if (is_null($leagueProjection)) {
-            throw new LeagueNotFoundException(
-                sprintf('Tournament with id %s does not exist.', $leagueId)
-            );
-        }
-
-        $gamesProjections = $this->em->getRepository(GameProjection::class)->findBy(
-            [
-                'competition' => $leagueProjection,
-                'round' => $round
-            ]
-        );
-
-        if (empty($gamesProjections)) {
-            throw new RoundNotFoundException(
-                sprintf("Tournament with id %s does not have round '%s'.", $leagueId, $round)
-            );
-        }
-
-        $content = [
-            'round' => $round,
-        ];
-        foreach ($gamesProjections as $game) {
-            $content['games'][] = [
-                'homeParticipantTeam' => (string)$game->getHomeParticipant()->getTeam(),
-                'awayParticipantTeam' => (string)$game->getAwayParticipant()->getTeam(),
-                'homeScore' => $game->getHomeScore(),
-                'awayScore' => $game->getAwayScore()
-            ];
-        }
+        $content = $this->round->show($leagueId, $round);
 
         $response = new JsonResponse($content);
 

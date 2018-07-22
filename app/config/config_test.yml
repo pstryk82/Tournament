@@ -11,3 +11,9 @@ framework:
 web_profiler:
     toolbar: false
     intercept_redirects: false
+
+doctrine:
+    dbal:
+        dbname:   "%test_database_name%"
+        # Workaround for DBAL 2.5 auto-detect -> with server_version allows to doctrine:database:create
+        server_version: 5.7 # your database server version here

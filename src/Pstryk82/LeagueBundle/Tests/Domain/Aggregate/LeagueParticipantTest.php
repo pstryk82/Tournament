@@ -20,23 +20,23 @@ class LeagueParticipantTest extends AbstractDomainObjectTest
     private $participant;
 
     /**
-     * @var Team | \PHPUnit_Framework_MokcObject_MOckObject
+     * @var Team | \PHPUnit_Framework_MockObject_MockObject
      */
     private $teamMock;
 
     /**
      *
-     * @var GameOutcomeResolver | \PHPUnit_Framework_MokcObject_MOckObject
+     * @var GameOutcomeResolver | \PHPUnit_Framework_MockObject_MockObject
      */
     private $gameOutcomeResolverMock;
 
     /**
-     * @var League | \PHPUnit_Framework_MokcObject_MOckObject
+     * @var League | \PHPUnit_Framework_MockObject_MockObject
      */
     private $competitionMock;
 
     /**
-     * @var Game | \PHPUnit_Framework_MokcObject_MOckObject
+     * @var Game | \PHPUnit_Framework_MockObject_MockObject
      */
     private $gameMock;
 

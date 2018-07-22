@@ -72,12 +72,12 @@ class GameProjection
         return $this->played;
     }
 
-    public function getHomeParticipant()
+    public function getHomeParticipant(): AbstractParticipantProjection
     {
         return $this->homeParticipant;
     }
 
-    public function getAwayParticipant()
+    public function getAwayParticipant(): AbstractParticipantProjection
     {
         return $this->awayParticipant;
     }
