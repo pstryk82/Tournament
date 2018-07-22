@@ -10,7 +10,7 @@ use Pstryk82\LeagueBundle\Domain\Aggregate\Team;
 use Pstryk82\LeagueBundle\Event\GameWasPlanned;
 use Pstryk82\LeagueBundle\Event\GameWasPlayed;
 
-class GameFunctionalTest extends \PHPUnit_Framework_TestCase
+class GameFunctionalTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var Game

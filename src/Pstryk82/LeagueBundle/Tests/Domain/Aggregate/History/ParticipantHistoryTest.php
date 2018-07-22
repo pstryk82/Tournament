@@ -5,7 +5,7 @@ namespace Pstryk82\LeagueBundle\Tests\Domain\Aggregate\History;
 use Pstryk82\LeagueBundle\Domain\Aggregate\History\ParticipantHistory;
 use Pstryk82\LeagueBundle\Storage\EventStorage;
 
-class ParticipantHistoryTest extends \PHPUnit_Framework_TestCase
+class ParticipantHistoryTest extends \PHPUnit\Framework\TestCase
 {
     public function testConstruct()
     {

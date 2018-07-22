@@ -106,7 +106,7 @@ class GameOutcomeResolverTest extends \PHPUnit\Framework\TestCase
             ->setHomeParticipant($this->homeParticipant)
             ->setAwayParticipant($this->awayParticipant);
 
-        $this->setExpectedException(GameOutcomeResolverException::class);
+        $this->expectException(GameOutcomeResolverException::class);
         $this->resolver->determine($game);
     }
 }
