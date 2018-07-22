@@ -8,7 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpKernel\Event\GetResponseForExceptionEvent;
 use Symfony\Component\HttpKernel\HttpKernelInterface;
 
-class ApiExceptionListenerTest extends \PHPUnit_Framework_TestCase
+class ApiExceptionListenerTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var ApiExceptionListener

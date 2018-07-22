@@ -4,7 +4,7 @@ namespace Pstryk82\LeagueBundle\Tests\Domain\ReadModel\Listener;
 
 use Pstryk82\LeagueBundle\Storage\ProjectionStorage;
 
-abstract class AbstractEventListenerTest extends \PHPUnit_Framework_TestCase
+abstract class AbstractEventListenerTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var ProjectionStorage

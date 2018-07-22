@@ -4,7 +4,7 @@ namespace Pstryk82\LeagueBundle\Tests\Domain\Aggregate;
 
 use Pstryk82\LeagueBundle\Domain\Aggregate\AggregateInterface;
 
-abstract class AbstractDomainObjectTest extends \PHPUnit_Framework_TestCase
+abstract class AbstractDomainObjectTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @param AggregateInterface $domainObject

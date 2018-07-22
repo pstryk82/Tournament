@@ -3,7 +3,6 @@
 namespace Pstryk82\LeagueBundle\Tests\Storage;
 
 use Doctrine\ORM\EntityManager;
-use PHPUnit_Framework_TestCase;
 use Pstryk82\LeagueBundle\Domain\Aggregate\League;
 use Pstryk82\LeagueBundle\Entity\StoredEvent;
 use Pstryk82\LeagueBundle\Event\LeagueWasFinished;
@@ -11,7 +10,7 @@ use Pstryk82\LeagueBundle\Generator\IdGenerator;
 use Pstryk82\LeagueBundle\Repository\StoredEventRepository;
 use Pstryk82\LeagueBundle\Storage\EventStorage;
 
-class EventStorageTest extends PHPUnit_Framework_TestCase
+class EventStorageTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var EventStorage
