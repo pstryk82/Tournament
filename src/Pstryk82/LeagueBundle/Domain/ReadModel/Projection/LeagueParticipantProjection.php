@@ -2,6 +2,8 @@
 
 namespace Pstryk82\LeagueBundle\Domain\ReadModel\Projection;
 
+use Doctrine\Common\Collections\ArrayCollection;
+
 class LeagueParticipantProjection extends AbstractParticipantProjection
 {
     /**
@@ -29,122 +31,67 @@ class LeagueParticipantProjection extends AbstractParticipantProjection
      */
     private $gamesPlayed = 0;
 
-    /**
-     * @param int $points
-     *
-     * @return Participant
-     */
-    public function addPoints($points)
+    public function addPoints(int $points): self
     {
         $this->points += $points;
 
         return $this;
     }
 
-    /**
-     * Get points.
-     *
-     * @return int
-     */
-    public function getPoints()
+    public function getPoints(): int
     {
         return $this->points;
     }
 
-    /**
-     * @param int $goalsFor
-     *
-     * @return Participant
-     */
-    public function addGoalsFor($goalsFor)
+    public function addGoalsFor(int $goalsFor): self
     {
         $this->goalsFor += $goalsFor;
 
         return $this;
     }
 
-    /**
-     * Get goalsFor.
-     *
-     * @return int
-     */
-    public function getGoalsFor()
+    public function getGoalsFor(): int
     {
         return $this->goalsFor;
     }
 
-    /**
-     * @param int $goalsAgainst
-     *
-     * @return Participant
-     */
-    public function addGoalsAgainst($goalsAgainst)
+    public function addGoalsAgainst(int $goalsAgainst): self
     {
         $this->goalsAgainst += $goalsAgainst;
 
         return $this;
     }
 
-    /**
-     * Get goalsAgains.
-     *
-     * @return int
-     */
-    public function getGoalsAgainst()
+    public function getGoalsAgainst(): int
     {
         return $this->goalsAgainst;
     }
 
-    /**
-     * @param int $goalDifference
-     *
-     * @return Participant
-     */
-    public function addGoalDifference($goalDifference)
+    public function addGoalDifference(int $goalDifference): self
     {
         $this->goalDifference += $goalDifference;
 
         return $this;
     }
 
-    /**
-     * Get goalDifference.
-     *
-     * @return int
-     */
-    public function getGoalDifference()
+    public function getGoalDifference(): int
     {
         return $this->goalDifference;
     }
 
-    /**
-     * Set gamesPlayed.
-     *
-     * @param int $gamesPlayed
-     *
-     * @return Participant
-     */
-    public function addGamesPlayed($gamesPlayed)
+    public function addGamesPlayed(int $gamesPlayed): self
     {
         $this->gamesPlayed += $gamesPlayed;
 
         return $this;
     }
 
-    /**
-     * Get gamesPlayed.
-     *
-     * @return int
-     */
-    public function getGamesPlayed()
+    public function getGamesPlayed(): int
     {
         return $this->gamesPlayed;
     }
 
-    /**
-     * @return ArrayCollection
-     */
-    public function getGames()
+    public function getGames(): ArrayCollection
     {
         return $this->games;
     }

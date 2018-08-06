@@ -7,9 +7,10 @@ use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\Client;
 use Symfony\Bundle\FrameworkBundle\Console\Application;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Symfony\Component\Console\Input\StringInput;
 use Symfony\Component\DependencyInjection\ContainerInterface;
 
-class AbstractDbFunctionalTest extends WebTestCase
+abstract class AbstractDbFunctionalTest extends WebTestCase
 {
     /**
      * @var Application
@@ -35,12 +36,13 @@ class AbstractDbFunctionalTest extends WebTestCase
     {
         self::runCommand('doctrine:database:drop --force');
         self::runCommand('doctrine:database:create');
-        self::runCommand('doctrine:schema:create');
-        self::runCommand('doctrine:fixtures:load --append --no-interaction --fixtures=tests/AppBundle/DataFixtures/ORM');
+        self::runCommand('doctrine:schema:create --em projections');
+        self::runCommand('doctrine:fixtures:load --em projections --append --no-interaction');
+//        self::runCommand('doctrine:fixtures:load --em=projections --append --no-interaction --fixtures=src/Pstryk82/LeagueBundle/DataFixtures');
 
         $this->client = static::createClient();
         $this->container = $this->client->getContainer();
-        $this->entityManager = $this->container->get('doctrine.orm.entity_manager');
+        $this->entityManager = $this->container->get('doctrine.orm.projections_entity_manager');
 
         parent::setUp();
     }

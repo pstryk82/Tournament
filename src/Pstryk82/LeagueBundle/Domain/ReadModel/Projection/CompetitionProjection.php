@@ -3,6 +3,7 @@
 namespace Pstryk82\LeagueBundle\Domain\ReadModel\Projection;
 
 use Doctrine\Common\Collections\ArrayCollection;
+use Pstryk82\LeagueBundle\Domain\Aggregate\AbstractParticipant;
 use Pstryk82\LeagueBundle\Domain\Aggregate\Game;
 
 abstract class CompetitionProjection
@@ -69,50 +70,26 @@ abstract class CompetitionProjection
         return $this->id;
     }
 
-    /**
-     * Set name.
-     *
-     * @param string $name
-     *
-     * @return Competition
-     */
-    public function setName($name)
+    public function setName(string $name): self
     {
         $this->name = $name;
 
         return $this;
     }
 
-    /**
-     * Get name.
-     *
-     * @return string
-     */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * Set season.
-     *
-     * @param string $season
-     *
-     * @return Competition
-     */
-    public function setSeason($season)
+    public function setSeason(string $season): self
     {
         $this->season = $season;
 
         return $this;
     }
 
-    /**
-     * Get season.
-     *
-     * @return string
-     */
-    public function getSeason()
+    public function getSeason(): string
     {
         return $this->season;
     }
@@ -125,24 +102,14 @@ abstract class CompetitionProjection
         return $this->participants;
     }
 
-    /**
-     * @param AbstractParticipant $participant
-     *
-     * @return Competition
-     */
-    public function addParticipant(AbstractParticipant $participant)
+    public function addParticipant(AbstractParticipant $participant): self
     {
         $this->participants->add($participant);
 
         return $this;
     }
 
-    /**
-     * @param AbstractParticipant $participant
-     *
-     * @return Competition
-     */
-    public function removeParticipant(AbstractParticipant $participant)
+    public function removeParticipant(AbstractParticipant $participant): self
     {
         $this->participants->removeElement($participant);
 
@@ -173,30 +140,22 @@ abstract class CompetitionProjection
         return $this->rankPointsForLose;
     }
 
-    /**
-     * @return $this
-     */
-    public function setRankPointsForWin($rankPointsForWin)
+
+    public function setRankPointsForWin($rankPointsForWin): self
     {
         $this->rankPointsForWin = $rankPointsForWin;
 
         return $this;
     }
 
-    /**
-     * @return $this
-     */
-    public function setRankPointsForDraw($rankPointsForDraw)
+    public function setRankPointsForDraw($rankPointsForDraw): self
     {
         $this->rankPointsForDraw = $rankPointsForDraw;
 
         return $this;
     }
 
-    /**
-     * @return $this
-     */
-    public function setRankPointsForLose($rankPointsForLose)
+    public function setRankPointsForLose($rankPointsForLose): self
     {
         $this->rankPointsForLose = $rankPointsForLose;
 

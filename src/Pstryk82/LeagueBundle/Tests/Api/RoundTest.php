@@ -9,7 +9,7 @@ use Pstryk82\LeagueBundle\Domain\ReadModel\Projection\LeagueProjection;
 use Pstryk82\LeagueBundle\Exception\LeagueNotFoundException;
 use Pstryk82\LeagueBundle\Exception\RoundNotFoundException;
 
-class RoundTest extends \PHPUnit_Framework_TestCase
+class RoundTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var EntityManagerInterface | \PHPUnit_Framework_MockObject_MockObject
@@ -64,8 +64,4 @@ class RoundTest extends \PHPUnit_Framework_TestCase
         $this->roundApi->show('abcd123', 19);
     }
 
-    public function testShowTournamentRound()
-    {
-
-    }
 }

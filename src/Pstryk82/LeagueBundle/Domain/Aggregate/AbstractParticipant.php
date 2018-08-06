@@ -34,10 +34,7 @@ abstract class AbstractParticipant implements AggregateInterface
         return $this->aggregateId;
     }
 
-    /**
-     * @return Team
-     */
-    public function getTeam()
+    public function getTeam(): Team
     {
         return $this->team;
     }

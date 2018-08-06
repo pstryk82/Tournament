@@ -17,12 +17,7 @@ abstract class AbstractAggregateHistory implements AggregateHistoryInterface
      */
     protected $events;
 
-    /**
-     * 
-     * @param type $aggregateId
-     * @param EventStorage $eventStorage
-     */
-    public function __construct($aggregateId, EventStorage $eventStorage)
+    public function __construct(string $aggregateId, EventStorage $eventStorage)
     {
         $this->aggregateId = $aggregateId;
         $this->events = $eventStorage->find($aggregateId);

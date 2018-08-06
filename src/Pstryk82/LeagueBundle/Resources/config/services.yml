@@ -71,3 +71,7 @@ services:
         class: Pstryk82\LeagueBundle\Api\League\Round
         arguments:
             - '@doctrine.orm.projections_entity_manager'
+
+    Pstryk82\LeagueBundle\DataFixtures\:
+        resource: '../../DataFixtures'
+        tags: ['doctrine.fixture.orm']

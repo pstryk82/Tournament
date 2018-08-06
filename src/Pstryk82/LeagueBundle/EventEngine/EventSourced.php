@@ -41,11 +41,7 @@ trait EventSourced
      */
     abstract public function getAggregateId();
 
-    /**
-     * @param LegueHistory $aggregateHistory
-     * @return \self
-     */
-    public static function reconstituteFrom(AggregateHistoryInterface $aggregateHistory)
+    public static function reconstituteFrom(AggregateHistoryInterface $aggregateHistory): self
     {
         $instance = new static($aggregateHistory->getAggregateId());
         foreach ($aggregateHistory->getEvents() as $event) {

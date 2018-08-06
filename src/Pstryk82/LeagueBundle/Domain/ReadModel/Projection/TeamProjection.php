@@ -48,72 +48,38 @@ class TeamProjection
         return $this->id;
     }
 
-    /**
-     * Set name.
-     *
-     * @param string $name
-     *
-     * @return $this
-     */
-    public function setName($name)
+    public function setName(string $name): self
     {
         $this->name = $name;
 
         return $this;
     }
 
-    /**
-     * Get name.
-     *
-     * @return string
-     */
-    public function getName()
+    public function getName(): string
     {
         return $this->name;
     }
 
-    /**
-     * @param int $rank
-     *
-     * @return $this
-     */
-    public function addRank($rank)
+    public function addRank($rank): self
     {
         $this->rank += $rank;
 
         return $this;
     }
 
-    /**
-     * Get rank.
-     *
-     * @return int
-     */
-    public function getRank()
+    public function getRank(): int
     {
         return $this->rank;
     }
 
-    /**
-     * Set stadium.
-     *
-     * @param string $stadium
-     *
-     * @return $this
-     */
-    public function setStadium($stadium)
+    public function setStadium($stadium): self
     {
         $this->stadium = $stadium;
 
         return $this;
     }
 
-    /**
-     * Get stadium.
-     *
-     * @return string
-     */
-    public function getStadium()
+    public function getStadium(): string
     {
         return $this->stadium;
     }

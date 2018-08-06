@@ -24,7 +24,7 @@ abstract class AbstractParticipantProjection
     /**
      * @var ArrayCollection
      */
-    private $games;
+    protected $games;
 
     public function __construct($id)
     {

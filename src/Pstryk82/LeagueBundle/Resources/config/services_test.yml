@@ -1,0 +1,4 @@
+services:
+    test.pstryk82_league.api_league.round:
+        alias: 'pstryk82_league.api_league.round'
+        public: true

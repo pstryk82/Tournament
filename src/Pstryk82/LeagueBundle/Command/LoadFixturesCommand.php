@@ -178,9 +178,6 @@ class LoadFixturesCommand extends ContainerAwareCommand
         }
     }
 
-    /**
-     * @param Game $game
-     */
     private function generateGameResults(Game $game)
     {
         $game->recordResult(mt_rand(0, 3), mt_rand(0, 3));

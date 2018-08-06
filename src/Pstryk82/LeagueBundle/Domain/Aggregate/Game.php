@@ -125,11 +125,7 @@ class Game implements AggregateInterface
         ;
     }
 
-    /**
-     * @param int $homeScore
-     * @param int $awayScore
-     */
-    public function recordResult($homeScore, $awayScore)
+    public function recordResult(int $homeScore, int $awayScore)
     {
         $gameWasPlayedEvent = new GameWasPlayed($this->aggregateId, $homeScore, $awayScore, new \DateTime());
         $this->recordThat($gameWasPlayedEvent);
